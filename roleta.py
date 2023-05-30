@@ -1,5 +1,5 @@
 import streamlit as st
-
+import streamlit_sync
 
 def roleta(ultimoatendido=None):
     ramaisonline = []
@@ -53,7 +53,7 @@ def ramalonline(n):
         st.session_state.statusramal5 = not st.session_state.statusramal5
     
 
-if __name__ == "__main__":
+def main():
     ramais = ['1072', '1032', '1031', '1035', '1033']
 
     numramais = len(ramais)
@@ -170,7 +170,12 @@ if __name__ == "__main__":
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal5at', on_click=altultimoatendido,args=(numramal,))
 
+CACHE_DIR = "./.st_sync_cache"
 
+room_name = streamlit_sync.select_room_widget(cache_dir=CACHE_DIR)
+
+with streamlit_sync.sync(room_name=room_name, cache_dir=CACHE_DIR):
+    main()
 
 
 
