@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit_sync
+from streamlit_server_state import server_state, server_state_lock, no_rerun
 
 def roleta(ultimoatendido=None):
     ramaisonline = []
@@ -12,10 +13,9 @@ def roleta(ultimoatendido=None):
     n = 1
     for ramal in range(1,6):
         method_name = "statusramal" + str(n)
-        if getattr(st.session_state, method_name):
+        if getattr(server_state, method_name):
             ramaisonline.append(ramal)
         n += 1
-    print(ramaisonline)
 
 
     #n = 1
@@ -34,29 +34,33 @@ def roleta(ultimoatendido=None):
             
 
 def altultimoatendido(ramal):    
-    st.session_state.ultimoatendido = ramal
+    server_state.ultimoatendido = ramal
 
 def ramalonline(n):
     if n == 1:
-        st.session_state.statusramal1 = not st.session_state.statusramal1
+        server_state.statusramal1 = not server_state.statusramal1
 
     elif n == 2:
-        st.session_state.statusramal2 = not st.session_state.statusramal2
+        server_state.statusramal2 = not server_state.statusramal2
         
     elif n == 3:
-        st.session_state.statusramal3 = not st.session_state.statusramal3
+        server_state.statusramal3 = not server_state.statusramal3
         
     elif n == 4:
-        st.session_state.statusramal4 = not st.session_state.statusramal4
+        server_state.statusramal4 = not server_state.statusramal4
         
     elif n == 5:
-        st.session_state.statusramal5 = not st.session_state.statusramal5
+        server_state.statusramal5 = not server_state.statusramal5
     
-
+@st.cache
 def main():
     ramais = ['1072', '1032', '1031', '1035', '1033']
 
     numramais = len(ramais)
+    
+
+    #with no_rerun:
+        #server_state["foo"] = 42
 
     #st.set_page_config(layout='wide')
     st.header('Roleta Atendimento')
@@ -69,39 +73,35 @@ def main():
         numramal = 1
         st.write(ramais[numramal-1])
 
-        if "statusramal1" not in st.session_state or not st.session_state.statusramal1:
-            st.session_state.statusramal1 = False
-            st.button('Offline',key='ramal1',on_click=ramalonline,args=(1,))
+        if "statusramal1" not in server_state or not server_state.statusramal1:
+            server_state.statusramal1 = False
+            st.button('Offline',key='ramal1off',on_click=ramalonline,args=(1,))
 
-        elif st.session_state.statusramal1:
-            st.button('Online',key='ramal1',on_click=ramalonline,args=(1,))
+        elif server_state.statusramal1:
+            st.button('Online',key='ramal1on',on_click=ramalonline,args=(1,))
             try:
-                if roleta(st.session_state.ultimoatendido) == numramal:
+                if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido',key='ramal1at',on_click=altultimoatendido,args=(numramal,))
-                else:
-                    print('Sem ramais retornados')
                     
             except:
                 if roleta() == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido',key='ramal1at',on_click=altultimoatendido,args=(numramal,))
-                else:
-                    print('Sem ramais retornados EXCPT')
 
         
     with col2:
         numramal = 2
         st.write(ramais[numramal-1])
 
-        if "statusramal2" not in st.session_state or not st.session_state.statusramal2:
-            st.session_state.statusramal2 = False
-            st.button('Offline',key='ramal2', on_click=ramalonline,args=(2,))
+        if "statusramal2" not in server_state or not server_state.statusramal2:
+            server_state.statusramal2 = False
+            st.button('Offline',key='ramal2off', on_click=ramalonline,args=(2,))
 
-        elif st.session_state.statusramal2:
-            st.button('Online',key='ramal2',on_click=ramalonline,args=(2,))
+        elif server_state.statusramal2:
+            st.button('Online',key='ramal2on',on_click=ramalonline,args=(2,))
             try:
-                if roleta(st.session_state.ultimoatendido) == numramal:
+                if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal2at', on_click=altultimoatendido,args=(numramal,))
                     
@@ -114,14 +114,14 @@ def main():
         numramal = 3
         st.write(ramais[numramal-1])
 
-        if "statusramal3" not in st.session_state or not st.session_state.statusramal3:
-            st.session_state.statusramal3 = False
-            st.button('Offline',key='ramal3',on_click=ramalonline,args=(3,))
+        if "statusramal3" not in server_state or not server_state.statusramal3:
+            server_state.statusramal3 = False
+            st.button('Offline',key='ramal3off',on_click=ramalonline,args=(3,))
 
-        elif st.session_state.statusramal3:
-            st.button('Online',key='ramal3',on_click=ramalonline,args=(3,))
+        elif server_state.statusramal3:
+            st.button('Online',key='ramal3on',on_click=ramalonline,args=(3,))
             try:
-                if roleta(st.session_state.ultimoatendido) == numramal:
+                if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal3at', on_click=altultimoatendido,args=(numramal,))
                     
@@ -134,14 +134,14 @@ def main():
         numramal = 4
         st.write(ramais[numramal-1])
 
-        if "statusramal4" not in st.session_state or not st.session_state.statusramal4:
-            st.session_state.statusramal4 = False
-            st.button('Offline',key='ramal4',on_click=ramalonline,args=(4,))
+        if "statusramal4" not in server_state or not server_state.statusramal4:
+            server_state.statusramal4 = False
+            st.button('Offline',key='ramal4off',on_click=ramalonline,args=(4,))
 
-        elif st.session_state.statusramal4:
-            st.button('Online',key='ramal4',on_click=ramalonline,args=(4,))
+        elif server_state.statusramal4:
+            st.button('Online',key='ramal4on',on_click=ramalonline,args=(4,))
             try:
-                if roleta(st.session_state.ultimoatendido) == numramal:
+                if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal4at', on_click=altultimoatendido,args=(numramal,))
                     
@@ -154,14 +154,14 @@ def main():
         numramal = 5
         st.write(ramais[numramal-1])
 
-        if "statusramal5" not in st.session_state or not st.session_state.statusramal5:
-            st.session_state.statusramal5 = False
-            st.button('Offline',key='ramal5',on_click=ramalonline,args=(5,))
+        if "statusramal5" not in server_state or not server_state.statusramal5:
+            server_state.statusramal5 = False
+            st.button('Offline',key='ramal5off',on_click=ramalonline,args=(5,))
 
-        elif st.session_state.statusramal5:
-            st.button('Online',key='ramal5',on_click=ramalonline,args=(5,))
+        elif server_state.statusramal5:
+            st.button('Online',key='ramal5on',on_click=ramalonline,args=(5,))
             try:
-                if roleta(st.session_state.ultimoatendido) == numramal:
+                if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal5at', on_click=altultimoatendido,args=(numramal,))
                     
@@ -172,10 +172,10 @@ def main():
 
 
 
-room_name = streamlit_sync.select_room_widget()
+#room_name = streamlit_sync.select_room_widget()
 
-with streamlit_sync.sync(room_name):
-    main()
+#with streamlit_sync.sync(room_name):
+main()
 
 
 
