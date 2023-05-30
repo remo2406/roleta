@@ -52,7 +52,7 @@ def ramalonline(n):
     elif n == 5:
         server_state.statusramal5 = not server_state.statusramal5
     
-@st.cache
+
 def main():
     ramais = ['1072', '1032', '1031', '1035', '1033']
 
