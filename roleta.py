@@ -58,7 +58,7 @@ def main():
 
     numramais = len(ramais)
 
-    st.set_page_config(layout='wide')
+    #st.set_page_config(layout='wide')
     st.header('Roleta Atendimento')
     st.subheader('Ramais')
 
@@ -170,11 +170,11 @@ def main():
                     st.write('Sua vez de atender!')
                     st.button('Atendido', key='ramal5at', on_click=altultimoatendido,args=(numramal,))
 
-CACHE_DIR = "./.st_sync_cache"
 
-room_name = streamlit_sync.select_room_widget(cache_dir=CACHE_DIR)
 
-with streamlit_sync.sync(room_name=room_name, cache_dir=CACHE_DIR):
+room_name = streamlit_sync.select_room_widget()
+
+with streamlit_sync.sync(room_name):
     main()
 
 

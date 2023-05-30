@@ -1,2 +1,2 @@
-streamlit==1.22.0
+streamlit==1.4.0
 streamlit_sync==0.1.0
