@@ -460,7 +460,9 @@ def main():
 #room_name = streamlit_sync.select_room_widget()
 
 #with streamlit_sync.sync(room_name):
-main()
+
+if __name__ == '__main__':
+    main()
 
 
 
