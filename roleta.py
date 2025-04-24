@@ -109,8 +109,8 @@ def main():
     numramais = len(ramais)
     
 
-    #with no_rerun:
-        #server_state["foo"] = 42
+    with no_rerun:
+        server_state["foo"] = 42
 
     #st.set_page_config(layout='wide')
     st.header('Roleta Atendimento')
