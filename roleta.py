@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_sync
 from streamlit_server_state import server_state, server_state_lock, no_rerun
 import streamlit.components.v1 as components
 
@@ -102,9 +101,9 @@ def ChangeButtonColour(widget_label, font_color, background_color='transparent')
 
 
 def main():
-    ramais = ['Andreza', 'Antonio', 'Esther', 'Felipe Costa', 'Felipe Teixeira',
-              'Gabriela', 'Júlia', 'Lorrayne', 'Marcelly', 'Maria Clara Faraco',
-              'Maria Isabella', 'Matheus Silveira', 'Merilu', 'Mykaela',
+    ramais = ['Andreza', 'Antonio', 'Esther', 'Felipe C', 'Felipe T',
+              'Gabriela', 'Júlia', 'Lorrayne', 'Marcelly', 'Maria Clara',
+              'Maria Isabella', 'Matheus S', 'Merilu', 'Mykaela',
               'Samantha', 'Taíssa']
 
     numramais = len(ramais)
@@ -117,7 +116,9 @@ def main():
     st.header('Roleta Atendimento')
     st.subheader('Ramais')
 
-    col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13, col14, col15, col16 = st.columns(numramais)
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col6, col7, col8, col9, col10 = st.columns(5)
+    col11, col12, col13, col14, col15, col16 = st.columns(6)
     
 
     with col1:
@@ -130,7 +131,7 @@ def main():
 
         elif server_state.statusramal1:
             st.button('Online',key='ramal1on',on_click=ramalonline,args=(1,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -152,7 +153,7 @@ def main():
 
         elif server_state.statusramal2:
             st.button('Online',key='ramal2on',on_click=ramalonline,args=(2,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -173,7 +174,7 @@ def main():
 
         elif server_state.statusramal3:
             st.button('Online',key='ramal3on',on_click=ramalonline,args=(3,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -194,7 +195,7 @@ def main():
 
         elif server_state.statusramal4:
             st.button('Online',key='ramal4on',on_click=ramalonline,args=(4,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -236,7 +237,7 @@ def main():
 
         elif server_state.statusramal6:
             st.button('Online',key='ramal6on',on_click=ramalonline,args=(6,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -257,7 +258,7 @@ def main():
 
         elif server_state.statusramal7:
             st.button('Online',key='ramal7on',on_click=ramalonline,args=(7,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -278,7 +279,7 @@ def main():
 
         elif server_state.statusramal8:
             st.button('Online',key='ramal8on',on_click=ramalonline,args=(8,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
@@ -299,7 +300,7 @@ def main():
 
         elif server_state.statusramal9:
             st.button('Online',key='ramal9on',on_click=ramalonline,args=(9,))
-            ChangeButtonColour('Online','#310bf3e')
+            ChangeButtonColour('Online','#35bf3e')
             try:
                 if roleta(server_state.ultimoatendido) == numramal:
                     st.write('Sua vez de atender!')
