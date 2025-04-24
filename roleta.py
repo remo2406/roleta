@@ -108,7 +108,7 @@ def main():
 
     numramais = len(ramais)
     
-    st.session_state = ''
+    
     #with no_rerun:
         #server_state["foo"] = 42
 
@@ -463,6 +463,7 @@ def main():
 #with streamlit_sync.sync(room_name):
 
 if __name__ == '__main__':
+    st.session_state = 'pt'
     main()
 
 
