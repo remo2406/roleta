@@ -28,7 +28,7 @@ def roleta(ultimoatendido=None):
             return k
         #n += 1
 
-    
+
     
         
             
@@ -108,7 +108,7 @@ def main():
 
     numramais = len(ramais)
     
-
+    st.session_state = ''
     #with no_rerun:
         #server_state["foo"] = 42
 
