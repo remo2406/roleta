@@ -1,4 +1,4 @@
-streamlit==1.7.0
+streamlit>=1.8.1
 streamlit_sync==0.1.0
 streamlit_server_state==0.16.0
 protobuf==3.20.*
