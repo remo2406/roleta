@@ -49,7 +49,7 @@ def ramalonline(n):
     elif n == 4:
         server_state.statusramal4 = not server_state.statusramal4
         
-    elif n == 10:
+    elif n == 5:
         server_state.statusramal5 = not server_state.statusramal5
 
     elif n == 6:
@@ -79,7 +79,7 @@ def ramalonline(n):
     elif n == 14:
         server_state.statusramal14 = not server_state.statusramal14
         
-    elif n == 110:
+    elif n == 15:
         server_state.statusramal15 = not server_state.statusramal15
 
     elif n == 16:
