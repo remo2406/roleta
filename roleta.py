@@ -50,7 +50,7 @@ def ramalonline(n):
         server_state.statusramal4 = not server_state.statusramal4
         
     elif n == 10:
-        server_state.statusramal10 = not server_state.statusramal10
+        server_state.statusramal5 = not server_state.statusramal5
 
     elif n == 6:
         server_state.statusramal6 = not server_state.statusramal6
@@ -80,7 +80,7 @@ def ramalonline(n):
         server_state.statusramal14 = not server_state.statusramal14
         
     elif n == 110:
-        server_state.statusramal110 = not server_state.statusramal110
+        server_state.statusramal15 = not server_state.statusramal15
 
     elif n == 16:
         server_state.statusramal16 = not server_state.statusramal16
